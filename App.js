@@ -1,5 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import LearnPinchGesture from "./src/Animations/LearnPinchGesture";
 import { Gesture, GestureHandlerRootView } from "react-native-gesture-handler";
 import DoubleTabLikeInstagramAnimation from "./src/Animations/DoubleTabLikeInstagramAnimation";
@@ -13,11 +19,23 @@ import SwipeToDelete from "./src/Animations/SwipeToDelete";
 import RippleEffectAnimation from "./src/Animations/RipleEffectAnimation";
 import PerspectiveMenueAnimation from "./src/Animations/PerspectiveMenueAnimation";
 import SlidingCounter from "./src/Animations/SlidingCounter.tsx";
+import LearningSensors from "./src/Animations/LearningSensors";
+import ColorPickerComp from "./src/components/ColorPickerComp";
+import ClockLoaderAnimation from "./src/Animations/ClockLoaderAnimation";
+import MagicOfLayoutAnimation from "./src/Animations/MagicOfLayoutAnimation";
+import IphoneLockAnimation from "./src/Animations/IphoneLockAnimation";
+import Worklets from "./src/LearninigConcepts/Worklets";
+import React from "react";
+import TabOneScreen from "./src/Animations/BottomSheet";
+import DropDownmenuOption from "./src/Animations/DropDownMenuOption";
+import CircularImageCarusl from "./src/Animations/CircularImageCarusal";
+import SkeltonAnimation from "./src/Animations/SkeltonAnimation";
+import CustomSegmentedControll from "./src/Animations/CustomSegmentedControll";
 
 export default function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         {/* <LearnPinchGesture /> */}
         {/* <DoubleTabLikeInstagramAnimation /> */}
 
@@ -39,8 +57,27 @@ export default function App() {
 
         {/* <PerspectiveMenueAnimation /> */}
 
-        <SlidingCounter />
-      </View>
+        {/* <SlidingCounter /> */}
+
+        {/* <LearningSensors /> */}
+
+        {/* <ClockLoaderAnimation /> */}
+
+        {/* <MagicOfLayoutAnimation /> */}
+
+        {/* <IphoneLockAnimation /> */}
+
+        {/* <Worklets /> */}
+
+        {/* <TabOneScreen /> */}
+        {/* <DropDownmenuOption /> */}
+
+        {/* <CircularImageCarusl /> */}
+
+        {/* <SkeltonAnimation /> */}
+
+        <CustomSegmentedControll />
+      </SafeAreaView>
     </GestureHandlerRootView>
   );
 }
@@ -48,5 +85,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    // marginTop: 70,
   },
 });

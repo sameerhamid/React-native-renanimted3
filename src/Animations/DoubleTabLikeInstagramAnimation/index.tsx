@@ -27,7 +27,7 @@ const DoubleTabLikeInstagramAnimation = () => {
   const doubleTabRef = useRef();
   const scale = useSharedValue(0);
   const opacity = useSharedValue(1);
-  const scaleLike = useSharedValue(0);
+  const scaleFillLike = useSharedValue(0);
   const [showFillheart, setShowFillHeart] = useState(false);
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -37,6 +37,8 @@ const DoubleTabLikeInstagramAnimation = () => {
   });
 
   const onDubleTap = useCallback(() => {
+    console.log("called double tap");
+
     setShowFillHeart(true);
     scale.value = withSpring(1, undefined, (isFinished) => {
       if (isFinished) {
@@ -44,7 +46,7 @@ const DoubleTabLikeInstagramAnimation = () => {
       }
     });
 
-    scaleLike.value = withTiming(1);
+    scaleFillLike.value = withTiming(1);
   }, [scale.value]);
 
   const handlSingleTap = useCallback(() => {
@@ -53,6 +55,7 @@ const DoubleTabLikeInstagramAnimation = () => {
     // } else {
     //   opacity.value = withTiming(0);
     // }
+    console.log("called single tap");
 
     opacity.value = withTiming(0, { duration: 600 }, (isFinished) => {
       if (isFinished) {
@@ -69,17 +72,17 @@ const DoubleTabLikeInstagramAnimation = () => {
 
   const animatedBottomLikeStyle = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: scaleLike.value }],
+      transform: [{ scale: scaleFillLike.value }],
     };
   });
 
   const handBottomLike = () => {
     "worklet";
-    if (scaleLike.value === 0) {
-      scaleLike.value = withTiming(1);
+    if (scaleFillLike.value === 0) {
+      scaleFillLike.value = withTiming(1);
       setShowFillHeart(true);
     } else {
-      scaleLike.value = withTiming(0);
+      scaleFillLike.value = withTiming(0);
       setShowFillHeart(false);
     }
   };
@@ -87,7 +90,11 @@ const DoubleTabLikeInstagramAnimation = () => {
   return (
     <View style={styles.container}>
       <TapGestureHandler waitFor={doubleTabRef} onActivated={handlSingleTap}>
-        <TapGestureHandler numberOfTaps={2} onActivated={onDubleTap}>
+        <TapGestureHandler
+          numberOfTaps={2}
+          onActivated={onDubleTap}
+          ref={doubleTabRef}
+        >
           <Animated.View>
             <Image style={styles.imgStyle} source={IMAGES.INSTAGRAM} />
             <AnimatedImage
@@ -95,23 +102,23 @@ const DoubleTabLikeInstagramAnimation = () => {
               style={[styles.like, animatedStyle]}
               resizeMode={"center"}
             />
-
-            <TouchableOpacity onPress={handBottomLike}>
-              {showFillheart ? (
-                <AnimatedImage
-                  source={IMAGES.LIKE}
-                  style={[styles.bottomLike, animatedBottomLikeStyle]}
-                />
-              ) : (
-                <AnimatedImage
-                  source={IMAGES.EMPTY_HEART}
-                  style={[styles.bottomLike]}
-                />
-              )}
-            </TouchableOpacity>
           </Animated.View>
         </TapGestureHandler>
       </TapGestureHandler>
+
+      <TouchableOpacity onPress={handBottomLike}>
+        {showFillheart ? (
+          <AnimatedImage
+            source={IMAGES.LIKE}
+            style={[styles.bottomLike, animatedBottomLikeStyle]}
+          />
+        ) : (
+          <AnimatedImage
+            source={IMAGES.EMPTY_HEART}
+            style={[styles.bottomLike]}
+          />
+        )}
+      </TouchableOpacity>
     </View>
   );
 };

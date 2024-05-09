@@ -4,11 +4,8 @@ import { AntDesign } from "@expo/vector-icons";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   interpolate,
-  measure,
   runOnJS,
-  useAnimatedRef,
   useAnimatedStyle,
-  useDerivedValue,
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
@@ -42,12 +39,17 @@ const SlidingCounterComp = () => {
   const pan = Gesture.Pan()
     .onBegin((e) => {})
     .onChange((e) => {
-      translateX.value = clamp(
-        e.translationX,
-        MAX_SLIDE_OFFSET,
-        MAX_SLIDE_OFFSET
-      );
-      translateY.value = clamp(e.translationY, 0, CIRCLE_SIZE);
+      console.log(e);
+      if (e.changeX) {
+        translateX.value = clamp(
+          e.translationX,
+          MAX_SLIDE_OFFSET,
+          MAX_SLIDE_OFFSET
+        );
+      }
+      if (e.changeY) {
+        translateY.value = clamp(e.translationY, 0, CIRCLE_SIZE);
+      }
     })
     .onFinalize((e) => {
       if (e.translationY >= CIRCLE_SIZE) {

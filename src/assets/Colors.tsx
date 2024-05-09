@@ -21,3 +21,9 @@ export const CircularProgressColors = {
   BACKGROUND_STROKE_COLOR: `#203850`,
   STROKE_COLOR: `#A6E1FA`,
 };
+
+export const Palatte = {
+  baseGrey05: "#E5E2DC",
+  baseGrey80: "#30302E",
+  background: "#F1EEE8",
+};
