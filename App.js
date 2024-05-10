@@ -31,6 +31,7 @@ import DropDownmenuOption from "./src/Animations/DropDownMenuOption";
 import CircularImageCarusl from "./src/Animations/CircularImageCarusal";
 import SkeltonAnimation from "./src/Animations/SkeltonAnimation";
 import CustomSegmentedControll from "./src/Animations/CustomSegmentedControll";
+import ShakeAnimation from "./src/Animations/ShakeAnimation";
 
 export default function App() {
   return (
@@ -76,7 +77,9 @@ export default function App() {
 
         {/* <SkeltonAnimation /> */}
 
-        <CustomSegmentedControll />
+        {/* <CustomSegmentedControll /> */}
+
+        <ShakeAnimation />
       </SafeAreaView>
     </GestureHandlerRootView>
   );
